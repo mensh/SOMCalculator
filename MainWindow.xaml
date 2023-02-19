@@ -1,0 +1,101 @@
+﻿<ui:UiWindow x:Class="SOMCalculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              Background="{ui:ThemeResource ApplicationBackgroundBrush}"
+             ExtendsContentIntoTitleBar="True"
+  WindowBackdropType="Mica"
+  WindowCornerPreference="Round" ResizeMode="NoResize"
+  WindowStartupLocation="CenterScreen"
+        xmlns:local="clr-namespace:SOMCalculator"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="570">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+
+        <Grid x:Name="RootMainGrid" Grid.Row="1" Margin="10,5,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Expression:" Grid.Column="0" Grid.Row="0" Margin="5" VerticalAlignment="Bottom"/>
+            <ComboBox x:Name="textBox"  DisplayMemberPath="Value" Width="450" Grid.Column="1" Grid.Row="0" Margin="5" IsEditable="True" VerticalAlignment="Center"/>
+
+            <TextBlock Text="Dec:" Grid.Column="0" Grid.Row="1" Margin="5" VerticalAlignment="Bottom"/>
+            <ui:TextBox x:Name="resulBox" Width="450"  Grid.Column="1" Grid.Row="1" BorderThickness="0" Margin="5" IsReadOnly="True"/>
+            
+            <TextBlock Text="Hex:" Grid.Column="0" Grid.Row="2" Margin="5" VerticalAlignment="Bottom"/>
+            <ui:TextBox x:Name="hexBox" Width="450"  Grid.Column="1" Grid.Row="2" BorderThickness="0" Margin="5" IsReadOnly="True"/>
+            
+            <TextBlock Text="Bin:" Grid.Column="0" Grid.Row="3" Margin="5" VerticalAlignment="Bottom"/>
+            <ui:TextBox x:Name="binBox" Width="450"  Grid.Column="1" Grid.Row="3" BorderThickness="0" Margin="5" IsReadOnly="True"/>
+            
+            <TextBlock Text="Oct:" Grid.Column="0" Grid.Row="4" Margin="5" VerticalAlignment="Bottom"/>
+            <ui:TextBox x:Name="octBox" Width="450"  Grid.Column="1" Grid.Row="4" BorderThickness="0" Margin="5" IsReadOnly="True"/>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="2"  Grid.Row="6" Margin="5">
+                <TextBlock Text="In Memory Float:"  Margin="5" VerticalAlignment="Bottom"/>
+                <ui:TextBox x:Name="hexFloat" Width="150"  BorderThickness="0" Margin="5" IsReadOnly="True"/>
+
+                <TextBlock Text="In Memory Int:"  Margin="5" VerticalAlignment="Bottom"/>
+                <ui:TextBox x:Name="hexInt" Width="150"   BorderThickness="0" Margin="5" IsReadOnly="True"/>
+            </StackPanel>
+
+            <ui:VirtualizingItemsControl x:Name="virt" Grid.Column="0"  VirtualizingPanel.CacheLengthUnit="Pixel" Width="215" Grid.ColumnSpan="2"  Grid.Row="7" Height="100" Margin="5">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ToggleButton 
+                        Width="20"
+                        Height="20"
+                        Margin="2"
+                        Padding="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        FontSize="12"
+                        IsChecked="{Binding Value}"
+                        Content="{Binding Name}" Command="{Binding DataContext.BitClickCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ui:VirtualizingItemsControl>
+
+
+
+        </Grid>
+        <ui:TitleBar ShowMaximize="False"
+      Title="SOMCalculator"
+      Grid.Row="0">
+            <!--<ui:TitleBar.Tray>
+                <ui:NotifyIcon
+          FocusOnLeftClick="True"
+          MenuOnRightClick="True"
+          TooltipText="WPF UI">
+                    <ui:NotifyIcon.Menu>
+                        <ContextMenu>
+                            <ui:MenuItem
+                 Header="Home"
+                 SymbolIcon="Library28"
+                 Tag="home" />
+                        </ContextMenu>
+                    </ui:NotifyIcon.Menu>
+                </ui:NotifyIcon>
+            </ui:TitleBar.Tray>-->
+        </ui:TitleBar>
+    </Grid>
+</ui:UiWindow>
