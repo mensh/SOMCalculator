@@ -183,7 +183,7 @@ namespace SOMCalculator.ViewModels
                     Result = result.ToString().Replace(",",".");
                     ResultHex = StringUtils.numberToHexString(result);
 
-                    ResultBin = ToBinary((int)result);
+                    ResultBin = ToBinary((Int64)result);
                     ResultOct = Convert.ToString((int)result, 8);
                     HexFloat = BitConverter.ToString(BitConverter.GetBytes((float)result)).Replace("-", "");
                     HexInt = BitConverter.ToString(BitConverter.GetBytes((int)result)).Replace("-", "");
@@ -237,7 +237,7 @@ namespace SOMCalculator.ViewModels
         }
 
 
-        public  string ToBinary(int x)
+        public  string ToBinary(Int64 x)
         {
             char[] buff = new char[32];
 
